@@ -1,6 +1,6 @@
-###Tests in TS+Playwright
+### Tests in TS+Playwright
 
-####How to run:
+#### How to run:
 
     npm install -D @playwright/test typescript
     npm test
