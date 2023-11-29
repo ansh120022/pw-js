@@ -2,8 +2,9 @@
 
 #### How to run:
 
+    npx playwright install
     npm install -D @playwright/test typescript
     npm test
 
-#### WebStorm debug configuration:
-![](WS_debug_config.png)
+#### [JB aqua](https://www.jetbrains.com/aqua/) debug configuration:
+![](IDE_config.png)

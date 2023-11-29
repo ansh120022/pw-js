@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "playwright": "^1.39.0",
-    "playwright-core": "^1.39.0"
+    "faker": "^5.5.3",
+    "playwright": "^1.40.1",
+    "playwright-core": "^1.39.0",
+    "playwright-test": "^14.0.0"
   },
   "scripts": {
     "test": "npx playwright test"
