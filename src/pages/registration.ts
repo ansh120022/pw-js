@@ -40,4 +40,8 @@ export class AccountPage {
         await this.submitForm();
     }
 
+    async clickReturningUserButton(){
+        await this.returningUserButton.click();
+    }
+
 }

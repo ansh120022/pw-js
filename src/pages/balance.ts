@@ -5,4 +5,8 @@ export class BalancePage {
         this.page = page;
         this.balanceButton = this.page.locator('BUTTON[class="button money"]');
     }
+
+    async getBalanceButtonLocator(){
+        return this.balanceButton;
+    }
 }
