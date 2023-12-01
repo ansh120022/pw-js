@@ -8,9 +8,24 @@ test('Top up balance', async ({ page }) => {
     await account.navigateStartPage();
     await account.clickReturningUserButton();
     await account.signIn('ansh120022@gmail.com');
-    const balancePage = new BalancePage(page)
-    const initialBalance= await balancePage.getBalanceValue();
+    const balancePage = new BalancePage(page);
+    const initialBalance = await balancePage.getBalanceValue();
     await balance.topUp();
-    const newBalance = await balancePage.getBalanceValue();
-    expect (newBalance).toBeGreaterThan(initialBalance);
+    const timeout = 4000;
+    const pollInterval = 100;
+    let elapsedTime = 0;
+    while (elapsedTime < timeout) {
+        const newBalance = await balancePage.getBalanceValue();
+
+        if (newBalance > initialBalance) {
+            break;
+        }
+
+        await page.waitForTimeout(pollInterval);
+        elapsedTime += pollInterval;
+    }
+    const finalBalance = await balancePage.getBalanceValue();
+    await expect(finalBalance).toBeGreaterThan(initialBalance);
 });
+
+
