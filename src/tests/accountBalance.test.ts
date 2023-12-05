@@ -1,27 +1,28 @@
-import { test, expect } from '@playwright/test';
-import {BalancePage} from "../pages/balance";
-import './setup';
+import { test, expect } from '@playwright/test'
+import { BalancePage } from '../pages/balance'
+import './setup'
 
 test('Top up balance', async ({ page }) => {
-    const balance = new BalancePage(page);
-    const balancePage = new BalancePage(page);
-    const initialBalance = await balancePage.getBalanceValue();
-    await balance.topUp();
-    const timeout = 4000;
-    const pollInterval = 100;
-    let elapsedTime = 0;
-    while (elapsedTime < timeout) {
-        const newBalance = await balancePage.getBalanceValue();
+  const balance = new BalancePage(page)
+  const balancePage = new BalancePage(page)
+  const initialBalance = await balancePage.getBalanceValue()
+  await balance.topUp()
 
-        if (newBalance > initialBalance) {
-            break;
-        }
+  const timeout = 4000
+  const pollInterval = 100
+  let elapsedTime = 0
 
-        await page.waitForTimeout(pollInterval);
-        elapsedTime += pollInterval;
+  while (elapsedTime < timeout) {
+    const newBalance = await balancePage.getBalanceValue()
+
+    if (newBalance > initialBalance) {
+      break
     }
-    const finalBalance = await balancePage.getBalanceValue();
-    await expect(finalBalance).toBeGreaterThan(initialBalance);
-});
 
+    await page.waitForTimeout(pollInterval)
+    elapsedTime += pollInterval
+  }
 
+  const finalBalance = await balancePage.getBalanceValue()
+  expect(finalBalance).toBeGreaterThan(initialBalance)
+})
