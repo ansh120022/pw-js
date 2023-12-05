@@ -14,7 +14,8 @@ test('Play game', async ({ page }) => {
     } else {
         expectedBalance = initialBalance + result - bet;
     }
-    await page.waitForTimeout(1500)
-    const newGameBalance = await game.getGameBalance();
-    await expect(expectedBalance).toEqual(newGameBalance);
+    await expect(async () => {
+        const newBalance = await game.getGameBalance();
+        expect(newBalance, 'Check that balance increased/decreased according to game result').toEqual(expectedBalance);
+    }).toPass();
 });
