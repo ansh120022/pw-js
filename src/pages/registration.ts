@@ -3,8 +3,8 @@ import { Page } from 'playwright';
 export class AccountPage {
     constructor(page: Page) {
         this.page = page;
-        this.returningUserButton = this.page.getByText('Returning user');
-        this.newUserButton = this.page.getByText('New user')
+        this.returningUserButton = this.page.getByRole('button', { name: 'Returning user' })
+        this.newUserButton = this.page.getByRole('button', { name: 'New user' })
         this.emailInput = this.page.locator('INPUT[type="email"]');
         this.passwordInput = this.page.locator('INPUT[type="password"]');
         this.numberInput = this.page.locator('INPUT[type="number"]');

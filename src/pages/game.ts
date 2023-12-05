@@ -14,9 +14,9 @@ export class GamePage {
         this.catImages = ["/_nuxt/img/cat1.9386b22.png", "/_nuxt/img/cat2.248e071.png", "/_nuxt/img/cat3.585a357.png", "/_nuxt/img/cat4.fc0f54a.png"];
         this.balance = this.page.frameLocator('iframe').locator("//div[contains(text(),'Balance')]");
         this.navigation = this.page.locator("DIV[id='navigation']");
-        this.casino = this.page.locator("//a[.='Casino']");
-        this.betValue = this.page.frameLocator('iframe').locator("//select/option[@selected='selected']");
-        this.winAmount = this.page.frameLocator('iframe').locator("//h1[contains(text(), 'Congratulations')]/following-sibling::h2/span")
+        this.casino = this.page.getByRole('link', { name: 'Casino' });
+        this.betValue = this.page.frameLocator('#game').locator("//select/option[@selected='selected']");
+        this.winAmount = this.page.frameLocator('#game').locator("//h1[contains(text(), 'Congratulations')]/following-sibling::h2/span")
     }
     async getGameBalance(){
         const balanceText = await this.balance.innerText();
@@ -41,7 +41,7 @@ export class GamePage {
         const randomCat = this.catImages[Math.floor(Math.random() * this.catImages.length)];
         await this.delay(2000);
 
-        const randomCatLocator = this.page.frameLocator('iframe').locator(`//img[@src='${randomCat}']`);
+        const randomCatLocator = this.page.frameLocator('#game').locator(`//img[@src='${randomCat}']`);
         await randomCatLocator.click();
 
         const result = await this.winAmount.innerHTML();
