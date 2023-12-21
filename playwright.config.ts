@@ -6,7 +6,7 @@ const config: PlaywrightTestConfig = {
     browserName: 'chromium',
     headless: true,
     screenshot: 'only-on-failure',
-    video: 'only-on-failure',
+    video: 'retain-on-failure',
     testMatch: 'src/tests/*.test.ts'
   },
   reporter: 'html'
