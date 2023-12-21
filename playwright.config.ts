@@ -4,8 +4,9 @@ const config: PlaywrightTestConfig = {
   use: {
     baseURL: 'https://demo.ft-crm.com/',
     browserName: 'chromium',
-    headless: false,
+    headless: true,
     screenshot: 'only-on-failure',
+    video: 'only-on-failure',
     testMatch: 'src/tests/*.test.ts'
   },
   reporter: 'html'

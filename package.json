@@ -10,7 +10,7 @@
     "playwright-test": "^14.0.0"
   },
   "scripts": {
-    "test": "npx playwright test",
+    "test": "npx playwright test --retries=3",
     "lint": "eslint . --ext .ts --fix"
   },
   "keywords": [],
